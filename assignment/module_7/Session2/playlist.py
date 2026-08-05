@@ -1,0 +1,8 @@
+f=open("playlist.txt", "w")
+f.write("Tera chehra\n")
+f.write("Raabta\n")
+f.write("Dil\n")
+f.write("Tumhe dillagi\n")
+f.write("Tum kya mile\n")
+f.close()
+print("Write done.")

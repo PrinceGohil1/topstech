@@ -1,0 +1,8 @@
+f=open("orders.txt", "w")
+f.write("Pizza\n")
+f.write("Burger\n")
+f.write("Sandwich\n")
+f.write("Pav bhaji\n")
+f.write("Dosa\n")
+f.close()
+print("Write done.")

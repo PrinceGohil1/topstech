@@ -1,0 +1,6 @@
+f=open("lyrics.txt", "w")
+f.write("Janu\n")
+f.write("mahakal\n")
+f.write("mahadev\n")
+f.close()
+print("Write done.")

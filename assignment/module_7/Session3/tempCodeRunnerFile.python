@@ -1,0 +1,14 @@
+def book_movie_ticket():
+    wallet=1000
+    try:
+        tickets=int(input("Enetr Number of tickets = "))
+        
+        ticket_price=wallet/tickets
+
+        print("Ticket price = ",ticket_price)
+
+    except ZeroDivisionError:
+        print("Number of ticket cannot be zero!!!")
+
+    except ValueError:
+        print("Please Enter valid number!!!")
