@@ -1,0 +1,24 @@
+1. manage.py
+
+manage.py is a command-line utility used to manage the Django project. 
+It is used for running the development server, creating migrations, applying migrations, and creating a superuser.
+
+2. settings.py
+
+settings.py contains the configuration settings of the Django project. 
+It includes database configuration, installed apps, middleware, templates, static files, and security settings.
+
+3. urls.py
+
+urls.py defines the URL patterns of the project. 
+It determines which view should handle a particular URL request.
+
+4. wsgi.py
+
+wsgi.py is the entry point used to run a Django application with WSGI-compatible web servers. 
+It is mainly used for deploying traditional synchronous Django applications.
+
+5. asgi.py
+
+asgi.py is the entry point for running Django applications with ASGI-compatible servers. 
+It supports asynchronous features and modern web applications.

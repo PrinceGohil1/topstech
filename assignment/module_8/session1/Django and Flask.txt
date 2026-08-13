@@ -1,0 +1,11 @@
+Django
+
+Django is a high-level, full-stack Python web framework that provides built-in features like ORM, authentication, admin panel, and security.
+It is suitable for large and complex applications such as Zomato, Instagram, and e-commerce websites.
+For example, Zomato can use Django to manage users, restaurants, orders, payments, and databases efficiently.
+
+Flask
+
+Flask is a lightweight and flexible Python web framework with fewer built-in features than Django.
+It is suitable for small applications, REST APIs, and microservices where developers want more control.
+For example, Flask can be used to build a food-delivery API or a small restaurant management app quickly.
