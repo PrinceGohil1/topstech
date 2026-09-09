@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile</title>
+</head>
+
+<body>
+
+    <h1>My Profile</h1>
+
+    {% if profile.profile_pic %}
+
+        <img
+            src="{{ profile.profile_pic.url }}"
+            width="150"
+            height="150"
+        >
+
+    {% else %}
+
+        <img
+            src="{% static 'images/default-profile.png' %}"
+            width="150"
+            height="150"
+        >
+
+    {% endif %}
+
+    <h2>{{ profile.display_name }}</h2>
+
+    <p>{{ profile.bio }}</p>
+
+    <p>{{ profile.phone_number }}</p>
+
+    <a href="{% url 'edit_profile' %}">
+        Edit Profile
+    </a>
+
+</body>
+</html>
