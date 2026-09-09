@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurants</title>
+</head>
+<body>
+
+<h1>Chinese Restaurants Rating Greater Than 4</h1>
+
+{% for restaurant in restaurants %}
+    <p>
+        {{ restaurant.name }} -
+        {{ restaurant.cuisine }} -
+        {{ restaurant.rating }}
+    </p>
+{% empty %}
+    <p>No restaurants found.</p>
+{% endfor %}
+
+</body>
+</html>
