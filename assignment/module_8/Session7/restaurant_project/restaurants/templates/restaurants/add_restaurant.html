@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Restaurant</title>
+</head>
+
+<body>
+
+    <h1>Add Restaurant</h1>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+
+        <div>
+            {{ form.name.label_tag }}
+
+            {{ form.name }}
+
+            {% if form.name.errors %}
+                {{ form.name.errors }}
+            {% endif %}
+        </div>
+
+        <br>
+
+        <div>
+            {{ form.cuisine.label_tag }}
+
+            {{ form.cuisine }}
+
+            {% if form.cuisine.errors %}
+                {{ form.cuisine.errors }}
+            {% endif %}
+        </div>
+
+        <br>
+
+        <div>
+            {{ form.rating.label_tag }}
+
+            {{ form.rating }}
+
+            {% if form.rating.errors %}
+                {{ form.rating.errors }}
+            {% endif %}
+        </div>
+
+        <br>
+
+        <button type="submit">
+            Save Restaurant
+        </button>
+
+    </form>
+
+</body>
+</html>
