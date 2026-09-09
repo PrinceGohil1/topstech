@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Email Demo</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1a1a2e;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 40px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ── Card ── */
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-top: 5px solid var(--accent);
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-4px); }
+
+        .card-icon { font-size: 36px; margin-bottom: 12px; }
+
+        .card h2 {
+            font-size: 20px;
+            color: #1a1a2e;
+            margin-bottom: 6px;
+        }
+
+        .card p {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* ── Form ── */
+        .form-group { margin-bottom: 14px; }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 6px;
+        }
+
+        input[type="email"],
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #333;
+            outline: none;
+            transition: border 0.2s;
+        }
+        input[type="email"]:focus,
+        input[type="text"]:focus {
+            border-color: var(--accent);
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 13px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        button[type="submit"]:hover { opacity: 0.88; }
+
+        /* ── Accent colours per card ── */
+        .card-test    { --accent: #4CAF50; }
+        .card-reset   { --accent: #2196F3; }
+        .card-order   { --accent: #FF5722; }
+        .card-ipl     { --accent: #9C27B0; }
+
+        /* ── Success / Error banner ── */
+        .alert {
+            max-width: 1100px;
+            margin: 0 auto 28px;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .alert-success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-left: 5px solid #4CAF50;
+        }
+        .alert-error {
+            background: #ffebee;
+            color: #c62828;
+            border-left: 5px solid #f44336;
+        }
+
+        /* ── Order card extras ── */
+        .badge {
+            display: inline-block;
+            background: #fff3e0;
+            color: #e65100;
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📧 Django Email Demo</h1>
+    <p class="subtitle">
+        Enter your email in any form below and receive a sample email instantly.
+    </p>
+
+    <!-- Success / Error message -->
+    {% if message %}
+        <div class="alert {% if error %}alert-error{% else %}alert-success{% endif %}">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    <div class="grid">
+
+        <!-- ══════════════════════════════════════
+             Q1 — Test Email
+        ══════════════════════════════════════ -->
+        <div class="card card-test">
+            <div class="card-icon">✉️</div>
+            <h2>Test Email</h2>
+            <p>
+                Send a simple plain-text test email to verify
+                that Django's Gmail SMTP setup is working correctly.
+            </p>
+            <form method="POST" action="{% url 'test_email' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="test_email">Your Email Address</label>
+                    <input
+                        type="email"
+                        id="test_email"
+                        name="recipient_email"
+                        placeholder="you@example.com"
+                        required
+                    >
+                </div>
+                <button type="submit">Send Test Email ✉️</button>
+            </form>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             Q2 — Password Reset Email
+        ══════════════════════════════════════ -->
+        <div class="card card-reset">
+            <div class="card-icon">🔐</div>
+            <h2>Password Reset Email</h2>
+            <p>
+                Receive a Paytm / Flipkart-style password reset
+                link with a 30-minute expiry and security notice.
+            </p>
+            <form method="POST" action="{% url 'send_reset_email' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="reset_email">Your Email Address</label>
+                    <input
+                        type="email"
+                        id="reset_email"
+                        name="recipient_email"
+                        placeholder="you@example.com"
+                        required
+                    >
+                </div>
+                <button type="submit">Send Reset Email 🔐</button>
+            </form>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             Q3+Q4 — Order Confirmation Email
+        ══════════════════════════════════════ -->
+        <div class="card card-order">
+            <div class="card-icon">🍔</div>
+            <h2>Order Confirmation Email</h2>
+            <span class="badge">Swiggy Style · HTML Email</span>
+            <p>
+                Receive a beautifully styled HTML order confirmation
+                with your name, order ID, items, and total amount.
+            </p>
+            <form method="POST" action="{% url 'order_email' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="order_name">Your Name</label>
+                    <input
+                        type="text"
+                        id="order_name"
+                        name="user_name"
+                        placeholder="Parth"
+                        required
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="order_email">Your Email Address</label>
+                    <input
+                        type="email"
+                        id="order_email"
+                        name="recipient_email"
+                        placeholder="you@example.com"
+                        required
+                    >
+                </div>
+                <button type="submit">Send Order Confirmation 🍔</button>
+            </form>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             Q5 — IPL Fantasy Welcome Email
+        ══════════════════════════════════════ -->
+        <div class="card card-ipl">
+            <div class="card-icon">🏏</div>
+            <h2>IPL Fantasy Welcome Email</h2>
+            <p>
+                Get an AI-generated welcome email for the IPL Fantasy
+                League with a dark cricket theme and call-to-action.
+            </p>
+            <form method="POST" action="{% url 'ipl_email' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="ipl_email">Your Email Address</label>
+                    <input
+                        type="email"
+                        id="ipl_email"
+                        name="recipient_email"
+                        placeholder="you@example.com"
+                        required
+                    >
+                </div>
+                <button type="submit">Send IPL Welcome Email 🏏</button>
+            </form>
+        </div>
+
+    </div><!-- /grid -->
+
+</body>
+</html>

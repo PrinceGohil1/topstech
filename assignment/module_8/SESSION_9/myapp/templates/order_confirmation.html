@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed – FoodExpress</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f5f5f5;
+             font-family:Arial, sans-serif;">
+
+    <!-- Outer wrapper table (email-safe layout) -->
+    <table width="100%" cellpadding="0" cellspacing="0"
+           style="background-color:#f5f5f5; padding:30px 0;">
+        <tr>
+            <td align="center">
+
+                <!-- Main card -->
+                <table width="600" cellpadding="0" cellspacing="0"
+                       style="background-color:#ffffff; border-radius:12px;
+                              overflow:hidden; max-width:600px;">
+
+                    <!-- ── Header ── -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg,#ff5722,#ff9800);
+                                   padding:30px; text-align:center;">
+                            <h1 style="color:#fff; margin:0; font-size:28px;">
+                                🍔 FoodExpress
+                            </h1>
+                            <p style="color:#ffe0b2; margin:8px 0 0; font-size:16px;">
+                                Order Confirmed! 🎉
+                            </p>
+                        </td>
+                    </tr>
+
+                    <!-- ── Greeting ── -->
+                    <tr>
+                        <td style="padding:30px 40px 10px;">
+                            <!-- Q4: Dynamic user_name variable -->
+                            <p style="font-size:17px; color:#333; margin:0;">
+                                Hello <strong>{{ user_name }}</strong>,
+                            </p>
+                            <p style="font-size:15px; color:#555; margin:8px 0 0;">
+                                Your order has been successfully placed and
+                                is now being prepared by our restaurant partner. 🍳
+                            </p>
+                        </td>
+                    </tr>
+
+                    <!-- ── Order ID badge ── -->
+                    <tr>
+                        <td style="padding:14px 40px;">
+                            <div style="background:#fff3e0; border-radius:8px;
+                                        padding:12px 18px; display:inline-block;">
+                                <!-- Q4: Dynamic order_id variable -->
+                                <span style="font-size:14px; color:#e65100;">
+                                    📦 Order ID:
+                                    <strong>{{ order_id }}</strong>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- ── Items table ── -->
+                    <tr>
+                        <td style="padding:10px 40px 0;">
+                            <table width="100%" cellpadding="0" cellspacing="0"
+                                   style="border-radius:8px; overflow:hidden;
+                                          border:1px solid #eeeeee;">
+
+                                <!-- Table header -->
+                                <tr style="background-color:#ff5722;">
+                                    <td style="padding:12px 16px; color:#fff;
+                                               font-size:13px; font-weight:bold;">
+                                        Item
+                                    </td>
+                                    <td style="padding:12px 16px; color:#fff;
+                                               font-size:13px; font-weight:bold;
+                                               text-align:center;">
+                                        Qty
+                                    </td>
+                                    <td style="padding:12px 16px; color:#fff;
+                                               font-size:13px; font-weight:bold;
+                                               text-align:right;">
+                                        Price
+                                    </td>
+                                </tr>
+
+                                <!-- Q4: Dynamic items loop -->
+                                {% for item in items %}
+                                <tr style="background-color:{% if forloop.odd %}#ffffff{% else %}#fafafa{% endif %};">
+                                    <td style="padding:14px 16px; color:#333;
+                                               font-size:14px; border-top:1px solid #eee;">
+                                        {{ item.name }}
+                                    </td>
+                                    <td style="padding:14px 16px; color:#555;
+                                               font-size:14px; text-align:center;
+                                               border-top:1px solid #eee;">
+                                        × {{ item.quantity }}
+                                    </td>
+                                    <td style="padding:14px 16px; color:#333;
+                                               font-size:14px; text-align:right;
+                                               border-top:1px solid #eee;">
+                                        ₹{{ item.price }}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+
+                                <!-- Subtotal -->
+                                <tr style="background-color:#f9f9f9;">
+                                    <td colspan="2"
+                                        style="padding:12px 16px; color:#777;
+                                               font-size:13px; border-top:1px solid #eee;">
+                                        Subtotal
+                                    </td>
+                                    <td style="padding:12px 16px; color:#555;
+                                               font-size:13px; text-align:right;
+                                               border-top:1px solid #eee;">
+                                        <!-- Q4: Dynamic subtotal -->
+                                        ₹{{ subtotal }}
+                                    </td>
+                                </tr>
+
+                                <!-- Delivery charge -->
+                                <tr style="background-color:#f9f9f9;">
+                                    <td colspan="2"
+                                        style="padding:12px 16px; color:#777;
+                                               font-size:13px; border-top:1px solid #eee;">
+                                        🛵 Delivery Charge
+                                    </td>
+                                    <td style="padding:12px 16px; color:#555;
+                                               font-size:13px; text-align:right;
+                                               border-top:1px solid #eee;">
+                                        <!-- Q4: Dynamic delivery_charge -->
+                                        ₹{{ delivery_charge }}
+                                    </td>
+                                </tr>
+
+                                <!-- Grand Total -->
+                                <tr style="background-color:#ff5722;">
+                                    <td colspan="2"
+                                        style="padding:14px 16px; color:#fff;
+                                               font-size:16px; font-weight:bold;">
+                                        Total Amount
+                                    </td>
+                                    <td style="padding:14px 16px; color:#fff;
+                                               font-size:16px; font-weight:bold;
+                                               text-align:right;">
+                                        <!-- Q4: Dynamic total -->
+                                        ₹{{ total }}
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- ── Delivery status ── -->
+                    <tr>
+                        <td style="padding:24px 40px;">
+                            <div style="background:#e8f5e9; border-radius:8px;
+                                        padding:16px 20px;">
+                                <p style="margin:0; color:#2e7d32; font-size:14px;">
+                                    🚀 <strong>Estimated Delivery:</strong>
+                                    30 – 40 minutes
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- ── Thank you message ── -->
+                    <tr>
+                        <td style="padding:0 40px 30px; text-align:center;">
+                            <p style="color:#555; font-size:14px; margin:0;">
+                                Thank you for ordering with
+                                <strong style="color:#ff5722;">FoodExpress</strong>!
+                                Sit back, relax, and get ready to enjoy your meal. 🍕
+                            </p>
+                        </td>
+                    </tr>
+
+                    <!-- ── Footer ── -->
+                    <tr>
+                        <td style="background:#f5f5f5; padding:20px 40px;
+                                   text-align:center; border-top:1px solid #eeeeee;">
+                            <p style="color:#aaa; font-size:12px; margin:0;">
+                                © 2026 FoodExpress Pvt. Ltd. · All rights reserved<br>
+                                Need help? Email us at
+                                <a href="mailto:support@foodexpress.in"
+                                   style="color:#ff5722; text-decoration:none;">
+                                    support@foodexpress.in
+                                </a>
+                            </p>
+                        </td>
+                    </tr>
+
+                </table>
+                <!-- /Main card -->
+
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
