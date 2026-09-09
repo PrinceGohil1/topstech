@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Added</title>
+</head>
+
+<body>
+
+    <h1>Restaurant Added Successfully!</h1>
+
+    <h2>Submitted Restaurant Details</h2>
+
+    <p>
+        <strong>Restaurant Name:</strong>
+        {{ restaurant_name }}
+    </p>
+
+    <p>
+        <strong>Cuisine Type:</strong>
+        {{ cuisine_type }}
+    </p>
+
+    <p>
+        <strong>Contact Email:</strong>
+        {{ contact_email }}
+    </p>
+
+    <br>
+
+    <a href="{% url 'add_restaurant' %}">
+        Add Another Restaurant
+    </a>
+
+</body>
+</html>
