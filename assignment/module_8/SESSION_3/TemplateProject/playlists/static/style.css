@@ -1,0 +1,12 @@
+body {
+    background-color: #f2f2f2;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.card img {
+    height: 220px;
+    object-fit: cover;
+}
