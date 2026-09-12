@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ restaurant.name }} - DineQuick</title>
+</head>
+<body>
+
+<h1>{{ restaurant.name }}</h1>
+
+<p>Address: {{ restaurant.address }}</p>
+
+<a href="{% url 'home' %}">Home</a>
+<a href="{% url 'restaurant_list' %}">Restaurants</a>
+
+<hr>
+
+<h2>Menu</h2>
+
+{% for item in menu_items %}
+
+    <h3>{{ item.name }}</h3>
+
+    <p>Price: ₹{{ item.price }}</p>
+
+    <p>Available: Yes</p>
+
+{% empty %}
+
+    <p>No menu items available.</p>
+
+{% endfor %}
+
+{% if user.is_authenticated %}
+    <br>
+    <a href="{% url 'place_order' restaurant.id %}">
+        Place Order
+    </a>
+{% else %}
+    <p>
+        Please <a href="{% url 'login' %}">Login</a> to place an order.
+    </p>
+{% endif %}
+
+</body>
+</html>
