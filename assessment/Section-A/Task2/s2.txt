@@ -1,0 +1,12 @@
+s2. You are working on a restaurant analytics module. The weekly sales data is stored as a
+nested dictionary: the outer key is the restaurant name, and the inner key-value pairs
+are dish names mapped to units sold.
+
+q2. A new requirement asks for a single-line expression that produces a flat list of all
+dishes sold by restaurants in Mumbai. How would you use list comprehension with a nested
+dictionary to achieve this? Explain why this is preferred over writing nested for loops when you
+need to pass the result directly into another function.
+
+Ans :
+
+List comprehension provides a compact way to create the required list in one expression. This is useful when the resulting list needs to be passed directly to another function.

@@ -1,0 +1,13 @@
+s1. You are building the order-cart screen of a food delivery app. A customer adds multiple
+dishes to a cart stored as a Python list of tuples, where each tuple holds the item name
+and price.
+
+q1.  Your manager asks you to display only items priced above Rs 150, count them, and
+calculate their subtotal — all in a single pass through the list. Compare using a for loop directly on the list versus slicing the list first. Which approach is more memory-efficient for a cart of 200 items, and why?
+
+Ans :
+
+A direct for loop is more memory-efficient because it processes the original list without creating another list.
+
+Slicing creates a new list in memory. Therefore, for a cart of 200 items, directly iterating over the list is preferable when only one pass is required.
+

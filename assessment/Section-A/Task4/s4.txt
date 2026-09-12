@@ -1,0 +1,21 @@
+s4. You are debugging the order-log writer in DineQuick's backend. The writer appends a
+completed order's details to a file named orders_log.txt after every successful delivery.
+In production, the system crashed twice — once when the file path did not exist, and
+once when disk space ran out mid-write
+
+q4.  Restructure the logic conceptually using try, except, and finally. Define a custom
+exception class DiskWriteError that wraps the OSError. Explain what must go in the finally block
+and why silently swallowing the exception in except would be dangerous in a billing context.
+
+Ans:
+
+The assessment asks for DiskWriteError, try, except and finally.
+
+try contains the file operation.
+
+except handles the OSError and converts it into a meaningful custom exception.
+
+finally closes the file regardless of whether an error occurs.
+
+Silently ignoring the exception is dangerous in billing because the application may continue as if the operation succeeded when an important write actually failed.
+

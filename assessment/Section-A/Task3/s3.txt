@@ -1,0 +1,25 @@
+s3. You are developing the delivery-partner module of DineQuick. Every delivery partner has
+a name, phone number, and a list of active orders. Senior partners additionally have a
+performance score that affects order allocation priority.
+
+q1. You decide to model this using a DeliveryPartner base class and a SeniorPartner
+subclass. Justify why inheritance is the right design here rather than adding an optional
+performance_score field to a single class. What problem does method overriding solve when
+SeniorPartner's assign_order() must log the score to a file while DeliveryPartner's version does
+not?
+
+Ans :
+
+Inheritance is suitable because SeniorPartner is a specialized type of DeliveryPartner.
+
+Common attributes such as:
+    name
+    phone
+    active orders
+can be kept in the base class.
+
+SeniorPartner can add:
+    performance_score
+without adding an unnecessary optional field to every normal delivery partner.
+
+Method overriding allows SeniorPartner to change or extend the behavior of assign_order().
