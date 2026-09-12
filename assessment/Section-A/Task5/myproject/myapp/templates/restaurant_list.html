@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurants</title>
+</head>
+<body>
+
+<h1>Restaurants</h1>
+
+{% for restaurant in restaurants %}
+    <h3>{{ restaurant.name }}</h3>
+
+    <ul>
+        {% for item in restaurant.menu_items.all %}
+            <li>
+                {{ item.name }} - Rs. {{ item.price }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endfor %}
+
+</body>
+</html>

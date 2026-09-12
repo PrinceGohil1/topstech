@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DineQuick Menu</title>
+</head>
+<body>
+
+<h1>DineQuick Menu</h1>
+
+{% for item in page_obj %}
+
+    <p>
+        {{ item.name }} - Rs. {{ item.price }}
+    </p>
+
+{% empty %}
+
+    <p>No menu items found.</p>
+
+{% endfor %}
+
+<hr>
+
+<p>
+    Page {{ page_obj.number }}
+    of {{ page_obj.paginator.num_pages }}
+</p>
+
+{% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">
+        Previous
+    </a>
+{% endif %}
+
+{% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">
+        Next
+    </a>
+{% endif %}
+
+</body>
+</html>
