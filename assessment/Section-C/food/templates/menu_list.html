@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu - DineQuick</title>
+</head>
+<body>
+
+<h1>Available Menu</h1>
+
+<a href="{% url 'home' %}">Home</a>
+<a href="{% url 'restaurant_list' %}">Restaurants</a>
+
+<hr>
+
+{% for item in menu_items %}
+
+    <h2>{{ item.name }}</h2>
+
+    <p>Restaurant: {{ item.restaurant.name }}</p>
+    <p>Price: ₹{{ item.price }}</p>
+
+    {% if item.available %}
+        <p>Available</p>
+    {% endif %}
+
+    <hr>
+
+{% empty %}
+
+    <p>No menu items available.</p>
+
+{% endfor %}
+
+</body>
+</html>
